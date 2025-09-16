@@ -1,16 +1,13 @@
-import { useRef, useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useSound from 'use-sound';
 import simon from './assets/sounds/sprite.mp3';
 import './App.css';
 
-export default function App() {
-
-
-
+function App() {
   const blueRef = useRef(null);
   const yellowRef = useRef(null);
-  const redRef = useRef(null);
   const greenRef = useRef(null);
+  const redRef = useRef(null);
 
   const [play] = useSound(simon, {
     sprite: {
@@ -20,94 +17,199 @@ export default function App() {
       four: [3000, 500],
       error: [4000, 1000]
     }
-  });
+  })
 
-  const colors = [
-    {
-      color: '#FAF303',
-      ref: yellowRef,
-      sound: 'one'
-    },
-    {
-      color: '#300AFA',
-      ref: blueRef,
-      sound: 'two'
-    },
-    {
-      color: '#FA0E03',
-      ref: redRef,
-      sound: 'three'
-    },
-    {
-      color: '#0AFA03',
-      ref: greenRef,
-      sound: 'four'
-    },
-  ];
-
+  const colors =
+    [
+      {
+        color: '#FAF303',
+        ref: yellowRef,
+        sound: 'one'
+      },
+      {
+        color: '#300AFA',
+        ref: blueRef,
+        sound: 'two'
+      },
+      {
+        color: '#FA0E03',
+        ref: redRef,
+        sound: 'three'
+      },
+      {
+        color: '#0AFA03',
+        ref: greenRef,
+        sound: 'four'
+      },
+    ];
 
   const minNumber = 0;
   const maxNumber = 3;
   const speedGame = 400;
 
 
-  const [sequence, setSequence] = useState([]);                   //  sequence        almacenará la secuencia que va generando el juego.
-  const [currentGame, setCurrentGame] = useState([]);             //  currentGame     la secuencia que va ejecutando el jugador.
-  const [isAllowedToPlay, setIsAllowedToPlay] = useState(false);  //  isAllowedToPlay un booleano para permitir pulsar tecla o no.
-  const [speed, setSpeed] = useState(speedGame);                  //  speed           almacenará los cambios de velocidad del juego, ahora se gestiona de forma progresiva.
-  const [turn, setTurn] = useState(0);                            //  turn            almacenará el número de turno que se está ejecutando.
-  const [pulses, setPulses] = useState(0);                        //  pulses          almacenará el número de pulsaciones.
-  const [success, setSuccess] = useState(0);                      //  success         almacenará el número de aciertos.
-  const [isGameOn, setIsGameOn] = useState(false);                //  isGameOn        si el juego debe iniciarse.
+  const [sequence, setSequence] = useState([]);
+  const [currentGame, setCurrentGame] = useState([]);
+  const [isAllowedToPlay, setIsAllowedToPlay] = useState(false);
+  const [speed, setSpeed] = useState(speedGame);
+  const [turn, setTurn] = useState(0);
+  const [pulses, setPulses] = useState(0);
+  const [success, setSuccess] = useState(0);
+  const [isGameOn, setIsGameOn] = useState(false);
 
-  function initGame() {
-    return null;
+
+  const initGame = () => {
+    randomNumber();
+    setIsGameOn(true);
+    console.log(`The value of isAllowedToPlay is: ${isAllowedToPlay}`);
   }
+
+  const randomNumber = () => {
+    setIsAllowedToPlay(false);
+    const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
+    setSequence([...sequence, randomNumber]);
+    setTurn(turn + 1);
+  }
+
+
+  const handleClick = (index) => {
+    if (isAllowedToPlay) {
+      play({ id: colors[index].sound })
+      colors[index].ref.current.style.opacity = (1);
+      colors[index].ref.current.style.scale = (0.9);
+      setTimeout(() => {
+        colors[index].ref.current.style.opacity = (0.5);
+        colors[index].ref.current.style.scale = (1);
+        setCurrentGame([...currentGame, index]);
+        setPulses(pulses + 1);
+      }, speed / 2);
+    }
+  }
+
+  useEffect(() => {
+    if (pulses > 0) {
+      if (Number(sequence[pulses - 1]) === Number(currentGame[pulses - 1])) {
+        setSuccess(success + 1);
+      } else {
+        const index = sequence[pulses - 1];
+        if (index) colors[index].ref.current.style.opacity = (1);
+        play({ id: 'error' })
+        setTimeout(() => {
+          if (index) colors[index].ref.current.style.opacity = (0.5);
+          setIsGameOn(false);
+        }, speed * 2);
+        setIsAllowedToPlay(false);
+      }
+    }
+  }, [pulses]);
+
+  useEffect(() => {
+    if (!isGameOn) {
+      setSequence([]);
+      setCurrentGame([]);
+      setIsAllowedToPlay(false);
+      setSpeed(speedGame);
+      setSuccess(0);
+      setPulses(0);
+      setTurn(0);
+    }
+  }, [isGameOn]);
+
+  useEffect(() => {
+    if (success === sequence.length && success > 0) {
+      setSpeed(speed - sequence.length * 2);
+      setTimeout(() => {
+        setSuccess(0);
+        setPulses(0);
+        setCurrentGame([]);
+        randomNumber();
+      }, 500);
+    }
+  }, [success]);
+
+  useEffect(() => {
+    if (!isAllowedToPlay) {
+      sequence.map((item, index) => {
+        setTimeout(() => {
+          play({ id: colors[item].sound });
+          colors[item].ref.current.style.opacity = (1);
+          setTimeout(() => {
+            colors[item].ref.current.style.opacity = (0.5);
+          }, speed / 2)
+        }, speed * index);
+      });
+    }
+    setIsAllowedToPlay(true);
+  }, [sequence]);
 
   return (
     <>
       {
         isGameOn ?
-
           <>
             <div className='header'>
               <h1>Turn {turn}</h1>
             </div>
 
             <div className='container'>
-              {/* Genera los botones  y se les incorpora el event Handler onClick*/}
               {colors.map((item, index) => {
                 return (
                   <div
                     key={index}
                     ref={item.ref}
                     className={`pad pad-${index}`}
-                    style={{ backgroundColor: `${item.color}`, opacity: .6 }}
+                    style={{ backgroundColor: `${item.color}`, opacity: 0.6 }}
                     onClick={() => handleClick(index)}
-                  ></div>
+                  >
+                  </div>
                 );
               })}
             </div>
           </>
-
           :
+          <div style={{
+            background: 'url(./src/assets/images/Title_Image_1.png)',
+            backgroundSize: '100vw 100vh',
+            backgroundRepeat: 'no-repeat',
+            height: '100vh',
+            width: '100vw',
+            position: 'absolute'
+            }}>
 
-          <>
-            <div className='header' style={SUPER_SIMON_TITLE_STYLES}>
+            <div style={{
+              position: 'absolute',
+              width: '100vw',
+              height: '100vh',
+              color: 'rgba(0, 0, 0, 1)'
+            }}></div>
+
+            <div className='header' style={{
+              position: 'relative',
+              top: '20px',
+              color: 'rgb(202, 76, 4)',
+              textAlign: 'center',
+              fontSize: '2vw'
+              }}>
               <h1>SUPER SIMON</h1>
             </div>
-            <button onClick={initGame}>START GAME</button>
-          </>
 
+            <button onClick={initGame} style={BUTTON_START_STYLES}>START</button>
+          </div>
       }
     </>
   );
-
-
 }
 
+export default App;
 
-
-const SUPER_SIMON_TITLE_STYLES = {
-  backgroundColor: 'rgb(111,11,1)'
+const BUTTON_START_STYLES = {
+  position: 'relative',
+  top: '55vh',
+  width: '15vw',
+  height: '10vh',
+  backgroundColor: 'rgba(0, 0, 0, 0.6)',
+  border: '1px solid rgba(132, 134, 13, 1)',
+  fontFamily: 'Kaotika',
+  fontSize: '3vh',
+  color: 'rgba(255, 255, 255, 1)'
 };

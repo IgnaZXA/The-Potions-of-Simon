@@ -1,0 +1,35 @@
+
+@font-face {
+  font-family: 'Kaotika';
+  src: url('../assets/fonts/KochAltschrift.ttf') format('truetype'); /* Chrome 4+, Firefox 3.5, Opera 10+, Safari 3—5 */ /*La ruta es relativa a este archivo, no a la raiz del proyecto OJO*/
+}
+
+html {
+  width: 100vw;
+  height: 100vh;
+}
+
+
+body {
+  position: absolute;
+  margin: 0;
+  display: block;
+  place-items: center;
+  background-color: rgb(36, 36, 36);
+  width: 100vw;
+  height: 100vh;
+
+}
+
+
+#root {
+
+  width: 100vw;
+  height: 100vh;
+  font-family: 'Kaotika';
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
+
+
