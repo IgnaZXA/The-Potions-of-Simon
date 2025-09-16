@@ -24,22 +24,33 @@ function App() {
       {
         color: '#FAF303',
         ref: yellowRef,
-        sound: 'one'
+        sound: 'one',
+        imageDir: './src/assets/images/Potions/Yellow_Potion.png',
+        position: {top: 55, left: 25}
       },
       {
         color: '#300AFA',
         ref: blueRef,
-        sound: 'two'
+        sound: 'two',
+        imageDir: './src/assets/images/Potions/Blue_Potion.png',
+        position: {top: 70, left: 40}
+
       },
       {
         color: '#FA0E03',
         ref: redRef,
-        sound: 'three'
+        sound: 'three',
+        imageDir: './src/assets/images/Potions/Red_Potion.png',
+        position: {top: 65, left: 10}
+
       },
       {
         color: '#0AFA03',
         ref: greenRef,
-        sound: 'four'
+        sound: 'four',
+        imageDir: './src/assets/images/Potions/Green_Potion.png',
+        position: {top: 72, left: 70}
+
       },
     ];
 
@@ -61,7 +72,6 @@ function App() {
   const initGame = () => {
     randomNumber();
     setIsGameOn(true);
-    console.log(`The value of isAllowedToPlay is: ${isAllowedToPlay}`);
   }
 
   const randomNumber = () => {
@@ -78,12 +88,12 @@ function App() {
       colors[index].ref.current.style.opacity = (1);
       colors[index].ref.current.style.scale = (0.9);
       setTimeout(() => {
-        colors[index].ref.current.style.opacity = (0.5);
+        colors[index].ref.current.style.opacity = (0.75);
         colors[index].ref.current.style.scale = (1);
         setCurrentGame([...currentGame, index]);
         setPulses(pulses + 1);
       }, speed / 2);
-    }
+    } 
   }
 
   useEffect(() => {
@@ -95,7 +105,7 @@ function App() {
         if (index) colors[index].ref.current.style.opacity = (1);
         play({ id: 'error' })
         setTimeout(() => {
-          if (index) colors[index].ref.current.style.opacity = (0.5);
+          if (index) colors[index].ref.current.style.opacity = (0.75);
           setIsGameOn(false);
         }, speed * 2);
         setIsAllowedToPlay(false);
@@ -134,7 +144,7 @@ function App() {
           play({ id: colors[item].sound });
           colors[item].ref.current.style.opacity = (1);
           setTimeout(() => {
-            colors[item].ref.current.style.opacity = (0.5);
+            colors[item].ref.current.style.opacity = (0.75);
           }, speed / 2)
         }, speed * index);
       });
@@ -146,7 +156,14 @@ function App() {
     <>
       {
         isGameOn ?
-          <>
+          <div style={{
+            backgroundImage: 'url(./src/assets/images/Crazy_Simon_Table_2.jpg)',
+            width: '100vw',
+            height: '100vh',
+            // backgroundRepeat: 'no-repeat',
+            backgroundSize: '100% 100%',
+            position: 'absolute'
+          }}>
             <div className='header'>
               <h1>Turn {turn}</h1>
             </div>
@@ -158,14 +175,25 @@ function App() {
                     key={index}
                     ref={item.ref}
                     className={`pad pad-${index}`}
-                    style={{ backgroundColor: `${item.color}`, opacity: 0.6 }}
+                    style={{ 
+                      backgroundImage: `url(${item.imageDir})`,
+                      backgroundSize: '100% 100%',
+                      position:'absolute',
+                      width: '5vw', 
+                      height:'25vh',
+                      top: `${item.position.top}vh`,
+                      left: `${item.position.left}vw`,
+                      opacity: '0.75'
+                    }}
                     onClick={() => handleClick(index)}
                   >
+                    
+
                   </div>
                 );
               })}
             </div>
-          </>
+          </div>
           :
           <div style={{
             background: 'url(./src/assets/images/Title_Image_1.png)',
@@ -213,3 +241,4 @@ const BUTTON_START_STYLES = {
   fontSize: '3vh',
   color: 'rgba(255, 255, 255, 1)'
 };
+
