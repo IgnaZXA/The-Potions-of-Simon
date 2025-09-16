@@ -77,53 +77,62 @@ function App() {
   const randomNumber = () => {
     setIsAllowedToPlay(false);
     const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
-    setSequence([...sequence, randomNumber]);
+    // setSequence([...sequence, randomNumber]);
+    setSequence([...sequence, 0]);
     setTurn(turn + 1);
   }
 
 
   const handleClick = (index) => {
+
+    console.log(`Is allowed to play? ${(isAllowedToPlay) ? ('yes') : ('no')}`);
+
+
     if (isAllowedToPlay) {
-      play({ id: colors[index].sound })
-      colors[index].ref.current.style.opacity = (1);
+      play({ id: colors[index].sound });
+      colors[index].ref.current.style.filter = 'brightness(1)';
+        // colors[index].ref.current.style.opacity = (1);
       colors[index].ref.current.style.scale = (0.9);
+
       setTimeout(() => {
-        colors[index].ref.current.style.opacity = (0.75);
+        // colors[index].ref.current.style.opacity = (0.75);
+        colors[index].ref.current.style.filter = 'brightness(1.75)';
         colors[index].ref.current.style.scale = (1);
         setCurrentGame([...currentGame, index]);
         setPulses(pulses + 1);
       }, speed / 2);
-    } 
+    }
   }
 
   useEffect(() => {
-    if (pulses > 0) {
-      if (Number(sequence[pulses - 1]) === Number(currentGame[pulses - 1])) {
+  if (!isGameOn) {
+    setSequence([]);
+    setCurrentGame([]);
+    setIsAllowedToPlay(false);
+    setSpeed(speedGame);
+    setSuccess(0);
+    setPulses(0);
+    setTurn(0);
+  }
+}, [isGameOn]);
+
+  // useEffect sin segundo parámetro se ejecuta en cuanto se cargue el componente.
+  useEffect(() => {
+    if (pulses > 0 && isAllowedToPlay) {
+      if (Number(sequence[pulses - 1]) === Number(currentGame[pulses - 1])) { // Si el número 
         setSuccess(success + 1);
       } else {
         const index = sequence[pulses - 1];
-        if (index) colors[index].ref.current.style.opacity = (1);
+        colors[index].ref.current.style.filter = 'brightness(1)';
         play({ id: 'error' })
         setTimeout(() => {
-          if (index) colors[index].ref.current.style.opacity = (0.75);
+          if (index) {colors[index].ref.current.style.filter = 'brightness(1.75)'; /*colors[item].ref.current.style.boxShadow = `0 0 0`;*/}
           setIsGameOn(false);
         }, speed * 2);
         setIsAllowedToPlay(false);
       }
     }
   }, [pulses]);
-
-  useEffect(() => {
-    if (!isGameOn) {
-      setSequence([]);
-      setCurrentGame([]);
-      setIsAllowedToPlay(false);
-      setSpeed(speedGame);
-      setSuccess(0);
-      setPulses(0);
-      setTurn(0);
-    }
-  }, [isGameOn]);
 
   useEffect(() => {
     if (success === sequence.length && success > 0) {
@@ -137,14 +146,18 @@ function App() {
     }
   }, [success]);
 
+
+  // EXPLICACIÓN :  Cuando NO ESTÉ PERMITIDO JUGAR 
   useEffect(() => {
     if (!isAllowedToPlay) {
+      
+      console.log(`Sequence value ${sequence}`);
       sequence.map((item, index) => {
         setTimeout(() => {
           play({ id: colors[item].sound });
-          colors[item].ref.current.style.opacity = (1);
+            colors[item].ref.current.style.filter = 'brightness(1)';
           setTimeout(() => {
-            colors[item].ref.current.style.opacity = (0.75);
+            colors[item].ref.current.style.filter = 'brightness(1.75)';
           }, speed / 2)
         }, speed * index);
       });
@@ -183,7 +196,8 @@ function App() {
                       height:'25vh',
                       top: `${item.position.top}vh`,
                       left: `${item.position.left}vw`,
-                      opacity: '0.75'
+                      /*opacity: '0.75'*/
+                      filter: 'brightness(1.75)',
                     }}
                     onClick={() => handleClick(index)}
                   >
@@ -212,16 +226,24 @@ function App() {
             }}></div>
 
             <div className='header' style={{
-              position: 'relative',
-              top: '20px',
-              color: 'rgb(202, 76, 4)',
+              placeContent: 'center',
+              position: 'absolute',
               textAlign: 'center',
-              fontSize: '2vw'
+              left: '50vw',
+              transform: 'translate(-50%)',
+      
               }}>
-              <h1>SUPER SIMON</h1>
+              <h1 style={{
+                margin: '1vw', 
+                fontSize: '3vw',
+                color: 'rgb(202, 76, 4)',
+              }}>SUPER SIMON</h1>
             </div>
 
-            <button onClick={initGame} style={BUTTON_START_STYLES}>START</button>
+            <button onClick={initGame} style={addStyles([BUTTON_START_STYLES])} /*onMouseEnter={hoverButton}*/>START</button>
+            {/* <button onClick={null} style={addStyles()}>START</button>
+            <button onClick={null} style={BUTTON_START_STYLES}>START</button> */}
+
           </div>
       }
     </>
@@ -232,13 +254,29 @@ export default App;
 
 const BUTTON_START_STYLES = {
   position: 'relative',
-  top: '55vh',
+  top: '75vh',
   width: '15vw',
   height: '10vh',
   backgroundColor: 'rgba(0, 0, 0, 0.6)',
   border: '1px solid rgba(132, 134, 13, 1)',
   fontFamily: 'Kaotika',
   fontSize: '3vh',
-  color: 'rgba(255, 255, 255, 1)'
+  color: 'rgba(255, 255, 255, 1)',
+  boxShadow: ' 1px 1px 5px 5px rgba(132, 134, 13, 1)',
+  borderRadius: '2px'
 };
 
+
+function hoverButton(){
+  console.log();
+}
+
+
+function addStyles(styles){
+  let allStyles = {}
+  styles.map((style) => { 
+    allStyles = {allStyles, ...style};
+  });
+
+  return allStyles;
+}
