@@ -60,6 +60,7 @@ function App() {
 
 
   const [sequence, setSequence] = useState([]);
+  const [bestTry, setBestTry] = useState([]);
   const [currentGame, setCurrentGame] = useState([]);
   const [isAllowedToPlay, setIsAllowedToPlay] = useState(false);
   const [speed, setSpeed] = useState(speedGame);
@@ -250,8 +251,8 @@ function App() {
           </div>
 
           <button onClick={initGame} style={addStyles([BUTTON_START_STYLES])} /*onMouseEnter={hoverButton}*/>ENTER TO SUFFER</button>
-          {/* <button onClick={null} style={addStyles()}>START</button>
-            <button onClick={null} style={BUTTON_START_STYLES}>START</button> */}
+          <button onClick={null} style={addStyles([BUTTON_TRY_STYLES])}>YOUR LEAST LAME TRY</button>
+          {/*  <button onClick={null} style={BUTTON_START_STYLES}>START</button> */}
 
         </div>
       );
@@ -297,6 +298,22 @@ const BUTTON_START_STYLES = {
   boxShadow: ' 1px 1px 5px 5px rgba(132, 134, 13, 1)',
   borderRadius: '2px'
 };
+
+const BUTTON_TRY_STYLES = {
+  position: 'absolute',
+  top: '85vh',
+  left: '10vw',
+  width: '10vw',
+  height: '10vh',
+  backgroundColor: 'rgba(0, 0, 0, 0.6)',
+  border: '1px solid rgba(132, 134, 13, 1)',
+  fontFamily: 'Kaotika',
+  fontSize: '2vh',
+  color: 'rgba(255, 255, 255, 1)',
+  boxShadow: ' 1px 1px 5px 5px rgba(132, 134, 13, 1)',
+  borderRadius: '2px'
+};
+
 
 
 function hoverButton() {
