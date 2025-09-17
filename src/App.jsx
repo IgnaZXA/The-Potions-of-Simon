@@ -1,6 +1,16 @@
-import { useState, useEffect, useRef, use } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import useSound from 'use-sound';
+import './assets/images/Potions/Yellow_Potion.png';
+import './assets/images/Potions/Blue_Potion.png';
+import './assets/images/Potions/Red_Potion.png';
+import './assets/images/Potions/Green_Potion.png';
+import './assets/images/Crazy_Simon_Table_2.jpg';
+import './assets/images/Title_Image_1.png';
+import './assets/images/Game_Over.jpg';
+
+
 import simon from './assets/sounds/sprite.mp3';
+
 import './App.css';
 
 function App() {
@@ -72,6 +82,7 @@ function App() {
 
 
   const initGame = () => {
+    console.log("Init Game");
     randomNumber();
     setIsGameOn(true);
   }
@@ -80,6 +91,8 @@ function App() {
     setIsAllowedToPlay(false);
     const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
     setSequence([...sequence, randomNumber]);
+    const newSequence = [...sequence, randomNumber];
+    console.log(`The new sequence is [${newSequence}]`);
     // setSequence([...sequence, 0]);
     setTurn(turn + 1);
   }
@@ -127,6 +140,7 @@ function App() {
         setTimeout(() => {
           if (index) colors[index].ref.current.style.filter = 'brightness(1.75)';
           setIsGameLost(true);
+          // setIsGameOn(false);
         }, speed * 2);
         setIsAllowedToPlay(false);
       }
@@ -138,7 +152,7 @@ function App() {
   // Cuando se detecte que se ha perdido la partida aparecerá un
   useEffect(() => {
     if (isGameLost) {
-      setInterval(() => {
+      setTimeout(() => {
         setIsGameOn(false);
         setIsGameLost(false);
       }, 5000);
@@ -247,12 +261,11 @@ function App() {
               margin: '1vw',
               fontSize: '3vw',
               color: 'rgb(202, 76, 4)',
-            }}>POTIONS OF MADNESS</h1>
+            }}>THE POTIONS OF MADNESS</h1>
           </div>
 
           <button onClick={initGame} style={addStyles([BUTTON_START_STYLES])} /*onMouseEnter={hoverButton}*/>ENTER TO SUFFER</button>
           <button onClick={null} style={addStyles([BUTTON_TRY_STYLES])}>YOUR LEAST LAME TRY</button>
-          {/*  <button onClick={null} style={BUTTON_START_STYLES}>START</button> */}
 
         </div>
       );
@@ -270,13 +283,13 @@ function App() {
         <h1 style={{
           color: 'rgba(255, 255, 255, 1)',
           fontFamily: 'Kaotika',
-          fontSize: '9vw',
+          fontSize: '8vw',
           textAlign: 'center',
           position: 'absolute',
-          top: '50vh',
+          top: '20vh',
           left: '50vw',
-          transform: 'translate(-50%, -50%)'
-        }}>There is no salvation </h1>
+          transform: 'translate(-50%, 0%)'
+        }}>THERE IS NO ESCAPE.</h1>
       </div>
     );
   }
