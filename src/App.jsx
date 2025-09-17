@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import useSound from 'use-sound';
-import './assets/images/Potions/Yellow_Potion.png';
-import './assets/images/Potions/Blue_Potion.png';
-import './assets/images/Potions/Red_Potion.png';
-import './assets/images/Potions/Green_Potion.png';
-import './assets/images/Crazy_Simon_Table_2.jpg';
-import './assets/images/Title_Image_1.png';
-import './assets/images/Game_Over.jpg';
+import '/src/assets/images/Potions/Yellow_Potion.png';
+import '/src/assets/images/Potions/Blue_Potion.png';
+import '/src/assets/images/Potions/Red_Potion.png';
+import '/src/assets/images/Potions/Green_Potion.png';
+import '/src/assets/images/Crazy_Simon_Table_2.jpg';
+import '/src/assets/images/Title_Image_1.png';
+import '/src/assets/images/Game_Over.jpg';
 
 
 import simon from './assets/sounds/sprite.mp3';
