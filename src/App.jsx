@@ -1,12 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import useSound from 'use-sound';
-import '/src/assets/images/Potions/Yellow_Potion.png';
-import '/src/assets/images/Potions/Blue_Potion.png';
-import '/src/assets/images/Potions/Red_Potion.png';
-import '/src/assets/images/Potions/Green_Potion.png';
-import '/src/assets/images/Crazy_Simon_Table_2.jpg';
-import '/src/assets/images/Title_Image_1.png';
-import '/src/assets/images/Game_Over.jpg';
+import yp from '/src/assets/images/Potions/Yellow_Potion.png';
+import bp from '/src/assets/images/Potions/Blue_Potion.png';
+import rp from '/src/assets/images/Potions/Red_Potion.png';
+import gp from '/src/assets/images/Potions/Green_Potion.png';
+import st2 from '/src/assets/images/Crazy_Simon_Table_2.jpg';
+import ti1 from '/src/assets/images/Title_Image_1.png';
+import go from '/src/assets/images/Game_Over.jpg';
 
 
 import simon from './assets/sounds/sprite.mp3';
@@ -35,14 +35,14 @@ function App() {
         color: '#FAF303',
         ref: yellowRef,
         sound: 'one',
-        imageDir: './src/assets/images/Potions/Yellow_Potion.png',
+        imageDir: yp,
         position: { top: 55, left: 25 }
       },
       {
         color: '#300AFA',
         ref: blueRef,
         sound: 'two',
-        imageDir: './src/assets/images/Potions/Blue_Potion.png',
+        imageDir: bp,
         position: { top: 70, left: 40 }
 
       },
@@ -50,7 +50,7 @@ function App() {
         color: '#FA0E03',
         ref: redRef,
         sound: 'three',
-        imageDir: './src/assets/images/Potions/Red_Potion.png',
+        imageDir: rp,
         position: { top: 65, left: 10 }
 
       },
@@ -58,7 +58,7 @@ function App() {
         color: '#0AFA03',
         ref: greenRef,
         sound: 'four',
-        imageDir: './src/assets/images/Potions/Green_Potion.png',
+        imageDir: gp,
         position: { top: 72, left: 70 }
 
       },
@@ -194,7 +194,7 @@ function App() {
     if (isGameOn) {
       return (
         <div style={{
-          backgroundImage: 'url(./src/assets/images/Crazy_Simon_Table_2.jpg)',
+          backgroundImage: `url(${st2})`,
           width: '100vw',
           height: '100vh',
           // backgroundRepeat: 'no-repeat',
@@ -234,7 +234,7 @@ function App() {
     } else {
       return (
         <div style={{
-          backgroundImage: 'url(./src/assets/images/Title_Image_1.png)',
+          backgroundImage: `url(${ti1})`,
           backgroundSize: '100vw 100vh',
           // backgroundRepeat: 'no-repeat',
           height: '100vh',
@@ -273,7 +273,7 @@ function App() {
   } else {
     return (
       <div style={{
-        backgroundImage: 'url(./src/assets/images/Game_Over.jpg)',
+        backgroundImage: `url(${go})`,
         backgroundSize: '100vw 100vh',
         backgroundRepeat: 'no-repeat',
         height: '100vh',
