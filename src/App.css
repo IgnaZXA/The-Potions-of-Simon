@@ -1,4 +1,3 @@
-
 /* #root {
   max-width: 1280px;
   padding: 0rem;
@@ -61,8 +60,77 @@
  */
 
 
- .header {
+.header {
   font-family: 'Kaotika';
   color: white;
   font-size: 1.5vw;
- }
+}
+
+.titleWord {
+  animation: efecto 4s linear infinite;
+}
+
+.titleWord:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.titleWord:nth-child(2) {
+  animation-delay: 1.5s;
+}
+
+.titleWord:nth-child(3) {
+  animation-delay: 2.5s;
+}
+
+.titleWord:nth-child(4) {
+  animation-delay: 3.5s;
+}
+
+
+@keyframes efecto {
+
+  0%,
+  100% {
+    color: rgb(43, 255, 0);
+    filter: blur(1px);
+    text-shadow: 0 0 10px rgb(54, 89, 47), 0 0 20px rgb(54, 89, 47),
+      0 0 30px rgb(54, 89, 47), 0 0 40px rgb(54, 89, 47) 0 0 50px rgb(54, 89, 47), 0 0 60px rgb(54, 89, 47);
+  }
+
+  10%,
+  95% {
+    color: #333;
+    filter: blur(0px);
+    text-shadow: none;
+  }
+}
+
+
+.descContainer {
+  border: 1px solid rgb(190, 154, 37);
+  background-color: rgba(0, 0, 0, 0.6);
+  position: relative;
+  animation: move-top-down 4s forwards;
+  width: 200px;
+  height: 100px;
+  top: -12vh;
+  left: 14vw;
+}
+
+
+.descText {
+  display: inline-block;
+  position: relative;
+  font-size: 20px;
+  width: 200px;
+}
+
+@keyframes move-top-down {
+  from {
+    transform: translate(0px, 100px);
+  }
+
+  to {
+    transform: translate(0px, 600px);
+  }
+}

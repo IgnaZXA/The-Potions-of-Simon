@@ -260,8 +260,17 @@ function App() {
             <h1 style={{
               margin: '1vw',
               fontSize: '3vw',
-              color: 'rgb(202, 76, 4)',
-            }}>THE POTIONS OF MADNESS</h1>
+              color: '#333',
+            }}>
+              <span className='titleWord'>THE </span>
+              <span className='titleWord'>POTIONS </span>
+              <span className='titleWord'>OF </span>
+              <span className='titleWord'>MADNESS</span>
+            </h1>
+
+            <div className='descContainer'>
+              <p className='descText'> Will the acolytes be able to survive Simon's <strong style={{ color: 'rgba(255, 0, 0, 1)' }}><i>madness</i></strong>? </p>
+            </div>
           </div>
 
           <button onClick={initGame} style={addStyles([BUTTON_START_STYLES])} /*onMouseEnter={hoverButton}*/>ENTER TO SUFFER</button>
