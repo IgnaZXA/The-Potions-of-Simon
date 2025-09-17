@@ -104,7 +104,8 @@ function App() {
       play({ id: colors[index].sound });
       colors[index].ref.current.style.filter = 'brightness(1)';
       // colors[index].ref.current.style.opacity = (1);
-      colors[index].ref.current.style.scale = (0.9);
+      // colors[index].ref.current.style.scale = (0.9);
+      scalePotion(colors[index].ref, 0.9);
 
       setTimeout(() => {
         // colors[index].ref.current.style.opacity = (0.75);
@@ -350,4 +351,30 @@ function addStyles(styles) {
   });
 
   return allStyles;
+}
+
+
+
+function scalePotion(refObj, scaleTo) {
+  let id = null;
+  clearInterval(id);
+  refObj.current.style.scale = 1;
+
+
+  const scaleFunc = () => {
+
+    if (Math.floor(refObj.current.style.scale * 100) === Math.floor(scaleTo * 100)) {
+      console.log("Task comlpeted");
+      clearInterval(id);
+    } else {
+      if (refObj.current.style.scale > scaleTo) {
+        refObj.current.style.scale = (refObj.current.style.scale - 0.01);
+        console.log("Hola");
+      } else {
+        refObj.current.style.scale = refObj.current.style.scale + 0.01;
+      }
+    }
+    console.log(refObj.current.style.scale);
+  }
+  id = setInterval(scaleFunc, 5);
 }
