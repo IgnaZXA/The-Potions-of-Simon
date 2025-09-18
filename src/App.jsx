@@ -8,6 +8,9 @@ import st2 from '/src/assets/images/Crazy_Simon_Table_2.jpg';
 import ti1 from '/src/assets/images/Title_Image_1.png';
 import go from '/src/assets/images/Game_Over.jpg';
 
+import theCursor from '/src/assets/cursors/TheCursor.png';
+import thePointer from '/src/assets/cursors/ThePointer.png';
+
 import simon from './assets/sounds/sprite.mp3';
 
 import './App.css';
