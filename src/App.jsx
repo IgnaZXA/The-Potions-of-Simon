@@ -69,7 +69,7 @@ function App() {
 
   const minNumber = 0;
   const maxNumber = 3;
-  const speedGame = 450;
+  const speedGame = 550;
 
 
   const [sequence, setSequence] = useState([]);
