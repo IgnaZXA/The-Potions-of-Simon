@@ -136,7 +136,8 @@ function App() {
         setSuccess(success + 1);
       } else {
         const index = sequence[pulses - 1];
-        if (index) colors[index].ref.current.style.filter = 'brightness(1)';
+        colors[index].ref.current.style.filter = 'brightness(1)';
+        //  else { console.log(`The index hasn't been read: ${index}`); }
         play({ id: 'error' });
         setTimeout(() => {
           if (index) colors[index].ref.current.style.filter = 'brightness(1.75)';
@@ -366,17 +367,14 @@ function scalePotion(refObj, scaleTo) {
   const scaleFunc = () => {
 
     if (Math.floor(refObj.current.style.scale * 100) === Math.floor(scaleTo * 100)) {
-      console.log("Task comlpeted");
       clearInterval(id);
     } else {
       if (refObj.current.style.scale > scaleTo) {
         refObj.current.style.scale = (refObj.current.style.scale - 0.01);
-        console.log("Hola");
       } else {
         refObj.current.style.scale = refObj.current.style.scale + 0.01;
       }
     }
-    console.log(refObj.current.style.scale);
   }
   id = setInterval(scaleFunc, 5);
 }
