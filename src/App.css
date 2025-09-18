@@ -132,10 +132,10 @@ body {
 
 @keyframes move-top-down {
   from {
-    transform: translate(0px, 100px);
+    transform: translate(0px, 3vh);
   }
 
   to {
-    transform: translate(0px, 600px);
+    transform: translate(0px, 55vh);
   }
 }
