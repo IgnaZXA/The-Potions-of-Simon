@@ -1,5 +1,5 @@
 .pad:hover {
-  cursor: url('src/assets/cursors/ThePointer.png'), pointer;
+  cursor: url('./assets/cursors/ThePointer.png'), pointer;
 }
 
 /*
