@@ -1,31 +1,6 @@
-/* #root {
-  max-width: 1280px;
-  padding: 0rem;
-  text-align: center;
-  width: 100vw;
-  height: 100vh;
-} */
 
-
-/* .container {
-  display: block;
-  width: 600px;
-  height: 600px;
-  background-color: black;
-  padding: 30px;
-  border-radius: 320px;
-} */
-
-/* .center-container {
-  position: absolute;
-  border-radius: 300px;
-  background-color: black;
-  width: 600px;
-  height: 600px;
-} */
-
-.pad {
-  cursor: url('src/assets/cursors/Magic Potions Flasks--pointer--SweezyCursors.png'), pointer;
+.pad:hover {
+  cursor: url('src/assets/cursors/ThePointer.png'), pointer;
 }
 
 /*
@@ -58,9 +33,14 @@
 }
  */
 body {
-  cursor: url('src/assets/cursors/Halloween Eye Potion & Crow Skull Animated--pointer--SweezyCursors.png'), auto;
-
+  cursor: url('src/assets/cursors/TheCursor.png'), auto;
 }
+
+button{
+  cursor: url('src/assets/cursors/ThePointer.png') ,pointer;
+}
+
+
 
 
 
@@ -116,10 +96,10 @@ body {
   background-color: rgba(0, 0, 0, 0.6);
   position: relative;
   animation: move-top-down 2s forwards;
-  width: 200px;
-  height: 100px;
+  width: 13vw;
+  height: 11vh;
   top: -12vh;
-  left: 14vw;
+  left: 12.55vw;
 }
 
 
@@ -127,7 +107,7 @@ body {
   display: inline-block;
   position: relative;
   font-size: 20px;
-  width: 200px;
+  width: 13vw;
 }
 
 @keyframes move-top-down {
