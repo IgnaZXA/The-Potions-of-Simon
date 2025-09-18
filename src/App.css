@@ -1,4 +1,3 @@
-
 .pad:hover {
   cursor: url('src/assets/cursors/ThePointer.png'), pointer;
 }
@@ -36,8 +35,8 @@ body {
   cursor: url('src/assets/cursors/TheCursor.png'), auto;
 }
 
-button{
-  cursor: url('src/assets/cursors/ThePointer.png') ,pointer;
+button {
+  cursor: url('src/assets/cursors/ThePointer.png'), pointer;
 }
 
 
@@ -121,5 +120,21 @@ button{
 
   to {
     transform: translate(0px, 55vh);
+  }
+}
+
+
+
+.gameOverText {
+  animation: moveGameOverTitle 2s forwards;
+}
+
+@keyframes moveGameOverTitle {
+  from {
+    transform: translate(-50%, -80%);
+  }
+
+  to {
+    transform: translate(-50%, -50%);
   }
 }

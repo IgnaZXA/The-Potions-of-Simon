@@ -13,6 +13,7 @@ import simon from './assets/sounds/sprite.mp3';
 import './App.css';
 
 function App() {
+
   const blueRef = useRef(null);
   const yellowRef = useRef(null);
   const greenRef = useRef(null);
@@ -289,16 +290,18 @@ function App() {
         width: '100vw',
         position: 'absolute'
       }}>
-        <h1 style={{
+        <div className='gameOverText' style={{
           color: 'rgba(255, 255, 255, 1)',
           fontFamily: 'Kaotika',
-          fontSize: '8vw',
+          fontSize: '7vw',
           textAlign: 'center',
           position: 'absolute',
-          top: '20vh',
+          top: '50vh',
           left: '50vw',
-          transform: 'translate(-50%, 0%)'
-        }}>THERE IS NO ESCAPE.</h1>
+          transform: 'translate(-50%, -50%)',
+          border: '.2vh solid rgb(132, 134, 13)',
+          backgroundColor: 'rgba(0, 0, 0, .6)'
+        }}>THERE IS NO ESCAPE</div>
       </div>
     );
   }
