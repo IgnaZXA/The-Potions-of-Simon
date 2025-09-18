@@ -143,7 +143,7 @@ function App() {
         //  else { console.log(`The index hasn't been read: ${index}`); }
         play({ id: 'error' });
         setTimeout(() => {
-          if (index) colors[index].ref.current.style.filter = 'brightness(1.75)';
+          colors[index].ref.current.style.filter = 'brightness(1.75)';
           setIsGameLost(true);
           // setIsGameOn(false);
         }, speed * 2);
