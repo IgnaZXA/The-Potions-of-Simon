@@ -1,3 +1,7 @@
+@import url('/src/assets/cursors/TheCursor.png');
+@import url('/src/assets/cursors/ThePointer.png');
+
+
 .pad:hover {
   cursor: url('src/assets/cursors/ThePointer.png'), pointer;
 }
