@@ -66,7 +66,7 @@ function App() {
 
   const minNumber = 0;
   const maxNumber = 3;
-  const speedGame = 550;
+  const speedGame = 600;
 
 
   const [sequence, setSequence] = useState([]);
@@ -180,7 +180,7 @@ function App() {
           setTimeout(() => {
             colors[item].ref.current.style.filter = 'brightness(1.75)';
           }, speed / 2);
-        }, speed * index);
+        }, (speed * index) + 50);
       });
     }
     setIsAllowedToPlay(true);
