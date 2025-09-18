@@ -85,7 +85,6 @@ function App() {
 
 
   const initGame = () => {
-    console.log("Init Game");
     randomNumber();
     setIsGameOn(true);
   }
@@ -95,8 +94,6 @@ function App() {
     const randomNumber = Math.floor(Math.random() * (maxNumber - minNumber + 1) + minNumber);
     setSequence([...sequence, randomNumber]);
     const newSequence = [...sequence, randomNumber];
-    console.log(`The new sequence is [${newSequence}]`);
-    // setSequence([...sequence, 0]);
     setTurn(turn + 1);
   }
 
@@ -140,12 +137,10 @@ function App() {
       } else {
         const index = sequence[pulses - 1];
         colors[index].ref.current.style.filter = 'brightness(1)';
-        //  else { console.log(`The index hasn't been read: ${index}`); }
         play({ id: 'error' });
         setTimeout(() => {
           colors[index].ref.current.style.filter = 'brightness(1.75)';
           setIsGameLost(true);
-          // setIsGameOn(false);
         }, speed * 2);
         setIsAllowedToPlay(false);
       }
@@ -225,7 +220,6 @@ function App() {
                     height: '25vh',
                     top: `${item.position.top}vh`,
                     left: `${item.position.left}vw`,
-                    /*opacity: '0.75'*/
                     filter: 'brightness(1.75)',
                   }}
                   onClick={() => handleClick(index)}
@@ -278,8 +272,7 @@ function App() {
             </div>
           </div>
 
-          <button onClick={initGame} style={addStyles([BUTTON_START_STYLES])} /*onMouseEnter={hoverButton}*/>ENTER TO SUFFER</button>
-          {/*<button onClick={null} style={addStyles([BUTTON_TRY_STYLES])}>YOUR LEAST LAME TRY</button>*/}
+          <button onClick={initGame} style={addStyles([BUTTON_START_STYLES])}>ENTER TO SUFFER</button>
 
         </div>
       );
@@ -342,12 +335,6 @@ const BUTTON_TRY_STYLES = {
   boxShadow: ' 1px 1px 5px 5px rgba(132, 134, 13, 1)',
   borderRadius: '2px'
 };
-
-
-
-function hoverButton() {
-  console.log();
-}
 
 
 function addStyles(styles) {
