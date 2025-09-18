@@ -1,15 +1,12 @@
 import { useState, useEffect, useRef } from 'react';
 import useSound from 'use-sound';
-import yp from '/src/assets/images/Potions/Yellow_Potion.png';
-import bp from '/src/assets/images/Potions/Blue_Potion.png';
-import rp from '/src/assets/images/Potions/Red_Potion.png';
-import gp from '/src/assets/images/Potions/Green_Potion.png';
-import st2 from '/src/assets/images/Crazy_Simon_Table_2.jpg';
-import ti1 from '/src/assets/images/Title_Image_1.png';
+import yp from '/src/assets/images/Potions/Yellow_Potion.webp';
+import bp from '/src/assets/images/Potions/Blue_Potion.webp';
+import rp from '/src/assets/images/Potions/Red_Potion.webp';
+import gp from '/src/assets/images/Potions/Green_Potion.webp';
+import st2 from '/src/assets/images/Crazy_Simon_Table.jpg';
+import ti1 from '/src/assets/images/Title_Image.jpg';
 import go from '/src/assets/images/Game_Over.jpg';
-
-import theCursor from '/src/assets/cursors/TheCursor.png';
-import thePointer from '/src/assets/cursors/ThePointer.png';
 
 import simon from './assets/sounds/sprite.mp3';
 
