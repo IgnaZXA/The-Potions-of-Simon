@@ -274,7 +274,7 @@ function App() {
           </div>
 
           <button onClick={initGame} style={addStyles([BUTTON_START_STYLES])} /*onMouseEnter={hoverButton}*/>ENTER TO SUFFER</button>
-          <button onClick={null} style={addStyles([BUTTON_TRY_STYLES])}>YOUR LEAST LAME TRY</button>
+          {/*<button onClick={null} style={addStyles([BUTTON_TRY_STYLES])}>YOUR LEAST LAME TRY</button>*/}
 
         </div>
       );
@@ -315,10 +315,10 @@ const BUTTON_START_STYLES = {
   backgroundColor: 'rgba(0, 0, 0, 0.6)',
   border: '1px solid rgba(132, 134, 13, 1)',
   fontFamily: 'Kaotika',
-  fontSize: '2vh',
+  fontSize: '1.5vw',
   color: 'rgba(255, 255, 255, 1)',
-  boxShadow: ' 1px 1px 5px 5px rgba(132, 134, 13, 1)',
-  borderRadius: '2px'
+  boxShadow: ' .1vh .1vh .5vh .5vh rgba(132, 134, 13, 1)',
+  borderRadius: '.2vh'
 };
 
 const BUTTON_TRY_STYLES = {
@@ -330,7 +330,7 @@ const BUTTON_TRY_STYLES = {
   backgroundColor: 'rgba(0, 0, 0, 0.6)',
   border: '1px solid rgba(132, 134, 13, 1)',
   fontFamily: 'Kaotika',
-  fontSize: '2vh',
+  fontSize: '1.5vw',
   color: 'rgba(255, 255, 255, 1)',
   boxShadow: ' 1px 1px 5px 5px rgba(132, 134, 13, 1)',
   borderRadius: '2px'

@@ -92,22 +92,26 @@ button{
 
 
 .descContainer {
-  border: 1px solid rgb(190, 154, 37);
+  border: .1vh solid rgb(190, 154, 37);
   background-color: rgba(0, 0, 0, 0.6);
   position: relative;
   animation: move-top-down 2s forwards;
   width: 13vw;
-  height: 11vh;
+  height: 8.9vh;
   top: -12vh;
   left: 12.55vw;
 }
 
 
 .descText {
-  display: inline-block;
+  /* display: inline-block; */
   position: relative;
-  font-size: 20px;
+  font-size: 1vw;
   width: 13vw;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin: 0px;
 }
 
 @keyframes move-top-down {
